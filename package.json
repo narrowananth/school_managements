@@ -1,0 +1,63 @@
+{
+    "name": "reservation_waitlist",
+    "version": "1.0.0",
+    "description": "",
+    "main": "index.js",
+    "scripts": {
+        "start": "node index.js",
+        "test": "echo \"Error: no test specified\" && exit 1",
+        "debugApi": "nodemon index.js"
+    },
+    "engines": {
+        "node": "14.17.0"
+    },
+    "keywords": [
+        "heroku",
+        "node",
+        "express"
+    ],
+    "author": "",
+    "license": "ISC",
+    "dependencies": {
+        "@firebase/database-compat": "0.1.2",
+        "@hapi/joi": "^17.1.1",
+        "@sendgrid/mail": "^7.4.4",
+        "aws-sdk": "^2.935.0",
+        "axios": "^0.21.1",
+        "body-parser": "^1.19.0",
+        "cookie-parser": "^1.4.5",
+        "cors": "^2.8.5",
+        "countdown": "^2.6.0",
+        "crypto-js": "^4.0.0",
+        "csv-writer": "^1.6.0",
+        "currency-symbol-map": "^5.0.1",
+        "dotenv": "^10.0.0",
+        "express": "^4.17.1",
+        "express-handlebars": "^5.3.2",
+        "express-session": "^1.17.2",
+        "express-validator": "^6.12.1",
+        "firebase-admin": "9.11.0",
+        "glob": "^7.1.7",
+        "js-base64": "^3.6.0",
+        "jsonwebtoken": "^8.5.1",
+        "lodash": "^4.17.21",
+        "moment": "^2.29.1",
+        "mongodb": "^3.6.6",
+        "mongoose": "^5.12.9",
+        "node-fetch": "^2.6.1",
+        "nodemailer": "^6.6.0",
+        "nodemon": "^2.0.12",
+        "open": "^8.2.1",
+        "parse-url": "^5.0.2",
+        "passport": "^0.4.1",
+        "passport-facebook": "^3.0.0",
+        "passport-google-oauth20": "^2.0.0",
+        "path": "^0.12.7",
+        "request": "^2.88.2",
+        "rx": "^4.1.0",
+        "rxjs": "^7.1.0",
+        "shopify-buy": "^2.11.0",
+        "sqs-consumer": "^5.5.0",
+        "url": "^0.11.0"
+    }
+}
