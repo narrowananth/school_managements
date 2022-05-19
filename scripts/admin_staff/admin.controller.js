@@ -112,7 +112,7 @@ module.exports = (app, Mongodb) => {
             let { staffId } = url_parts.query
             let result
             if (staffId) {
-                result = await Mongodb().StaffDetail.find({ staffId })
+                result = await Mongodb().StaffDetail.findOne({ staffId })
             } else {
                 result = await Mongodb().StaffDetail.find({})
             }
@@ -133,7 +133,7 @@ module.exports = (app, Mongodb) => {
             let { principleId } = url_parts.query
             let result
             if (principleId) {
-                result = await Mongodb().AdminDetail.find({ principleId })
+                result = await Mongodb().AdminDetail.findOne({ principleId })
             } else {
                 result = await Mongodb().AdminDetail.find({})
             }
