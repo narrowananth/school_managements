@@ -1,7 +1,9 @@
 const EXPRESS = require('express');
 const BODY_PARSER = require('body-parser');
 let app = EXPRESS();
+const CORS = require('cors')
 
+app.use(CORS());
 app.use(BODY_PARSER.json({ limit: "50mb" }))
 
 // Load all routes.
