@@ -12,10 +12,6 @@ module.exports = (app, Mongodb) => {
                 if (result) {
                     return res.send({ "status": "failure", "message": "Already class create" })
                 } else {
-                    let classValue = body.class
-                    classValue = classValue.split("")
-                    body.standard = classValue[0]
-                    body.section = classValue[1]
                     let createNewData = Mongodb().ClassDetail(body)
                     await createNewData.save()
                     return res.send({ "status": "success", "message": "New class created" })
@@ -103,7 +99,14 @@ module.exports = (app, Mongodb) => {
 
     app.get('/readClassDetails', async(req, res) => {
         try {
-            let result = await Mongodb().ClassDetail.find({})
+            let url_parts = url.parse(req.url, true)
+            let { classs } = url_parts.query;
+            let result
+            if (classs) {
+                result = await Mongodb().ClassDetail.findOne({ class: `${classs}` })
+            } else {
+                result = await Mongodb().ClassDetail.find({})
+            }
 
             if (result) {
                 return res.send({ "status": "success", "data": result })

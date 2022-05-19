@@ -10,7 +10,7 @@ module.exports = (app, Mongodb) => {
 
     updateStaffDetails = Joi.object({
         staffId: Joi.number().required(),
-        role: Joi.string().required(),
+        role: Joi.string().valid('viewer', 'admin').required(),
         access: Joi.array().required()
     })
 

@@ -118,7 +118,7 @@ module.exports = (app, Mongodb) => {
             }
 
             if (result) {
-                return res.send({ "status": "failure", "data": result })
+                return res.send({ "status": "success", "data": result })
             } else {
                 res.send({ "status": "failure", "message": "No staff created" })
             }
@@ -138,7 +138,7 @@ module.exports = (app, Mongodb) => {
                 result = await Mongodb().AdminDetail.find({})
             }
             if (result) {
-                return res.send({ "status": "message", "data": result })
+                return res.send({ "status": "success", "data": result })
             } else {
                 res.send({ "status": "failure", "message": "No admin details found" })
             }

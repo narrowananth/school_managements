@@ -111,7 +111,7 @@ module.exports = (app, Mongodb) => {
                 }
             }]);
             if (result && result.length > 0)
-                return res.send({ "status": "failure", "data": result })
+                return res.send({ "status": "success", "data": result })
             else
                 return res.send({ "status": "failure", "message": "No data found. Please the studentId and class" })
 
@@ -144,9 +144,9 @@ module.exports = (app, Mongodb) => {
 
             studentId = +studentId
 
-            let result = await Mongodb().PaymentDetail.findOne({ studentId, standard })
+            let result = await Mongodb().PaymentDetail.find({ studentId, standard })
             if (result)
-                return res.send({ "status": "failure", "data": result })
+                return res.send({ "status": "success", "data": result })
             else
                 return res.send({ "status": "failure", "message": "No data found." })
 
