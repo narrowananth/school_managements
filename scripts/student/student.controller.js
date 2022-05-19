@@ -13,31 +13,32 @@ module.exports = (app, Mongodb) => {
                 }
                 let result = await Mongodb().StudentDetail.find({ $and: [{ studentId: `${body.studentId}`, academicYear: `${body.academicYear}` }, { $and: [{ rollNo: `${body.rollNo}` }] }] })
                 if (result && result.length > 0) {
-                    return res.send({ "status": "success", "message":"Already student profile  create"})
+                    return res.send({ "status": "success", "message": "Already student profile  create" })
                 } else {
                     let createNewData = Mongodb().StudentDetail(body)
                     await createNewData.save()
-                    return res.send({ "status": "success","message":"New student profile created"})
+                    return res.send({ "status": "success", "message": "New student profile created" })
                 }
             } else {
-                res.send({ "status": "failure","message":"There is no owner in the database. So can't update or add or delete anything"})
+                res.send({ "status": "failure", "message": "There is no owner in the database. So can't update or add or delete anything" })
             }
         } catch (error) {
-            res.send({ "status": "failure","message":error.message})
+            res.send({ "status": "failure", "message": error.message })
         }
     })
 
-    app.get('/showStudentDetails',async(req, res)=>{
+    app.get('/showStudentDetails', async(req, res) => {
         try {
             let url_parts = url.parse(req.url, true)
- 
-            let { academicYear } = url_parts.query
+
+            let { academicYear, studentId } = url_parts.query
             let result
-            if(academicYear){
-             result = await Mongodb().StudentDetail.find({academicYear})
-            }
-            else{
-             result = await Mongodb().StudentDetail.find({})
+            if (academicYear) {
+                result = await Mongodb().StudentDetail.findOne({ academicYear })
+            } else if (studentId) {
+                result = await Mongodb().StudentDetail.findOne({ studentId })
+            } else {
+                result = await Mongodb().StudentDetail.find({})
             }
             if (result) {
                 return res.send({ "status": "success", "data": result })
@@ -45,9 +46,10 @@ module.exports = (app, Mongodb) => {
                 res.send({ "status": "failure", "message": "No student details created" })
             }
         } catch (error) {
-            res.send({ "status": "failure","message":error.message})
+            res.send({ "status": "failure", "message": error.message })
         }
     })
+
     app.get('/showStudentFees', async(req, res) => {
         try {
             let url_parts = url.parse(req.url, true)
@@ -109,12 +111,12 @@ module.exports = (app, Mongodb) => {
                 }
             }]);
             if (result && result.length > 0)
-                return res.send({ "status": "failure","data":result})
+                return res.send({ "status": "failure", "data": result })
             else
-                return res.send({ "status": "failure","message":"No data found. Please the studentId and class"})
+                return res.send({ "status": "failure", "message": "No data found. Please the studentId and class" })
 
         } catch (error) {
-            res.send({ "status": "failure","message":error.message})
+            res.send({ "status": "failure", "message": error.message })
         }
     })
 
@@ -124,10 +126,10 @@ module.exports = (app, Mongodb) => {
             console.log(body)
             let createNewData = Mongodb().PaymentDetail(body)
             await createNewData.save()
-            return res.send({ "status": "success","message":"Payment payed"})
+            return res.send({ "status": "success", "message": "Payment payed" })
 
         } catch (error) {
-            res.send({ "status": "failure","message":error.message})
+            res.send({ "status": "failure", "message": error.message })
         }
     })
 
@@ -144,12 +146,12 @@ module.exports = (app, Mongodb) => {
 
             let result = await Mongodb().PaymentDetail.findOne({ studentId, standard })
             if (result)
-                return res.send({ "status": "failure","data":result})
+                return res.send({ "status": "failure", "data": result })
             else
-                return res.send({ "status": "failure","message":"No data found."})
+                return res.send({ "status": "failure", "message": "No data found." })
 
         } catch (error) {
-            res.send({ "status": "failure","message":error.message})
+            res.send({ "status": "failure", "message": error.message })
         }
     })
 
