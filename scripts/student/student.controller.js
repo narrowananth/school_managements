@@ -27,6 +27,27 @@ module.exports = (app, Mongodb) => {
         }
     })
 
+    app.get('/showStudentDetails',async(req, res)=>{
+        try {
+            let url_parts = url.parse(req.url, true)
+ 
+            let { academicYear } = url_parts.query
+            let result
+            if(academicYear){
+             result = await Mongodb().StudentDetail.find({academicYear})
+            }
+            else{
+             result = await Mongodb().StudentDetail.find({})
+            }
+            if (result) {
+                return res.send({ "status": "success", "data": result })
+            } else {
+                res.send({ "status": "failure", "message": "No student details created" })
+            }
+        } catch (error) {
+            res.send({ "status": "failure","message":error.message})
+        }
+    })
     app.get('/showStudentFees', async(req, res) => {
         try {
             let url_parts = url.parse(req.url, true)
